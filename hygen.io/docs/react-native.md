@@ -33,7 +33,7 @@ And here's how `inject_component` looks like:
 inject: true
 to: app/globs/all-components.js
 skip_if: <%= name %>
-after: "const components = ["
+after: "const.ts components = ["
 ---
 <%= Name %>: require('../components/<%= name %>').default,
 ```

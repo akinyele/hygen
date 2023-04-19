@@ -1,6 +1,8 @@
 import fs from 'fs-extra'
 import type { ActionResult, RunnerConfig } from './types'
 import params from './params'
+import { getLibrary } from './rag/dependencies'
+import { JEST, STORY_BOOK } from './rag/const'
 
 class ShowHelpError extends Error {
   constructor(message: string) {
@@ -49,11 +51,30 @@ Options:
       `)
   }
 
+  // load Rag dependencies.
+  // TODO consider conditionally running only when component cli command is ran.
+
+  //  find jest.. storybook..
+  const storybook = getLibrary(STORY_BOOK, config)
+  const jest = getLibrary(JEST, config)
+
   // lazy loading these dependencies gives a better feel once
   // a user is exploring hygen (not specifying what to execute)
   const execute = (await import('./execute')).default
   const render = (await import('./render')).default
-  return execute(await render(args, config), args, config)
+  return execute(
+    await render(
+      {
+        ...args,
+        hasJest: !!jest,
+        storybookVersion: storybook?.major,
+        hasStorybook: !!storybook,
+      },
+      config,
+    ),
+    args,
+    config,
+  )
 }
 
 export { ShowHelpError }

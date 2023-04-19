@@ -17,6 +17,8 @@ const resolve = (
   return [
     templatesOverride && path.resolve(cwd, templatesOverride),
     process.env.HYGEN_TMPLS,
+    // path.resolve(cwd, 'node_modules/rag/_templates'),
+    path.resolve(cwd, 'src/rag/_templates'),
     path.resolve(cwd, '_templates'),
     path.resolve(cwd, defaultTemplates),
   ].find((_) => _ && fs.existsSync(_))

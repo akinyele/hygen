@@ -1,7 +1,7 @@
 import add from '../ops/add'
 import Logger from '../logger'
 
-// const gemfile = `
+// const.ts gemfile = `
 //     source 'http://rubygems.org'
 //     gem 'rails'
 //     gem 'nokogiri'

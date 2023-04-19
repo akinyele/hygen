@@ -81,7 +81,7 @@ Let's build `inject_boot.ejs.t`. We have to use `inject: true` because this is a
 to: app/modules/boot.js
 inject: true
 skip_if: <%= name %>
-after: "const modules = ["
+after: "const.ts modules = ["
 ---
 require('./<%= name %>).default,
 ```

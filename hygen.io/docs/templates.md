@@ -156,7 +156,7 @@ to: components/<%= name %>/index.jsx
 ---
 import React from 'react'
 
-export const <%= name %> = ({ children }) => (
+export const.ts <%= name %> = ({ children }) => (
   <div className="<%= h.changeCase.paramCase(name) %>">{children}</div>"
 )
 ```
